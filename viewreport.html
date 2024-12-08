@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Reports</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>View Submitted Reports</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="citizen.html">Citizen</a></li>
+                <li><a href="moderator.html">Moderator</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Your Submitted Reports</h2>
+        <p>Below are the reports you have submitted. You can delete any report if it's no longer relevant.</p>
+
+        <div id="reportList">
+            <!-- Reports will be dynamically loaded here -->
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Citizen-Politician Interaction Platform. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function loadReports() {
+            // Retrieve reports from local storage
+            const reports = JSON.parse(localStorage.getItem('reports')) || [];
+            const reportList = document.getElementById('reportList');
+
+            // Clear existing content
+            reportList.innerHTML = '';
+
+            if (reports.length === 0) {
+                reportList.innerHTML = '<p>No reports have been submitted yet.</p>';
+                return;
+            }
+
+            // Generate HTML for each report
+            reports.forEach(report => {
+                const reportItem = document.createElement('div');
+                reportItem.classList.add('report-item');
+                reportItem.id = `report-${report.id}`;
+
+                reportItem.innerHTML = `
+                    <p><strong>Report ID:</strong> ${report.id}</p>
+                    <p><strong>Description:</strong> ${report.description}</p>
+                    <button onclick="deleteReport(${report.id})">Delete</button>
+                `;
+
+                reportList.appendChild(reportItem);
+            });
+        }
+
+        function deleteReport(reportId) {
+            // Retrieve reports from local storage
+            let reports = JSON.parse(localStorage.getItem('reports')) || [];
+
+            // Filter out the report to delete
+            reports = reports.filter(report => report.id !== reportId);
+
+            // Save the updated reports back to local storage
+            localStorage.setItem('reports', JSON.stringify(reports));
+
+            // Reload the reports
+            loadReports();
+        }
+
+        // Load reports when the page is loaded
+        window.onload = loadReports;
+    </script>
+</body>
+</html>

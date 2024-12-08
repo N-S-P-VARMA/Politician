@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="citizenlogin.html">Citizen</a></li>
+                <li><a href="politicianlogin.html">Politician</a></li>
+                <li><a href="moderatorlogin.html">Moderator</a></li>
+                
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Welcome to the Admin Dashboard</h2>
+        <p>As an admin, you have the responsibility of overseeing the operations of the Citizen-Politician Interaction Platform. Here are your key functions:</p>
+
+        <div class="dashboard-component">
+            <h3>User Management</h3>
+            <p>Manage user accounts for citizens, politicians, moderators, and admins.</p>
+            <button onclick="manageUsers()">Manage Users</button>
+        </div>
+
+        <div class="dashboard-component">
+            <h3>Report Oversight</h3>
+            <p>View and address reports submitted by users regarding issues and interactions.</p>
+            <button onclick="window.location.href='viewreport.html'">View Reports</button>
+        </div>
+
+        <div class="dashboard-component">
+            <h3>Platform Settings</h3>
+            <p>Configure platform settings, manage features, and update guidelines.</p>
+            <button onclick="manageSettings()">Manage Settings</button>
+        </div>
+
+        <div class="dashboard-component">
+            <h3>Activity Logs</h3>
+            <p>Review activity logs to monitor platform usage and user interactions.</p>
+            <button onclick="viewLogs()">View Logs</button>
+        </div>
+
+        <div class="dashboard-component">
+            <h3>Feedback Analysis</h3>
+            <p>Analyze feedback submitted by users to improve platform functionality.</p>
+            <button onclick="analyzeFeedback()">Analyze Feedback</button>
+        </div>
+        
+        <div class="dashboard-component">
+            <h3>Register a Politician</h3>
+            <p>Register for a politician elected by people newly to know the issues from citizens.</p>
+            <button onclick="window.location.href='politiciansignup.html'">Register</button>
+            
+        </div>
+        
+        
+    </section>
+
+    <footer>
+        <p>© 2024 Citizen-Politician Interaction Platform. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

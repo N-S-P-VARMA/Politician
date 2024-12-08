@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderator Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Moderator Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="citizen.html">Citizen</a></li>
+                <li><a href="politician.html">Politician</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Welcome to the Moderator Dashboard</h2>
+        <p>As a moderator, you play a vital role in ensuring respectful communication between citizens and politicians. Here are your responsibilities:</p>
+
+        <div class="dashboard-component">
+            <h3>Monitor Reports</h3>
+            <p>View and manage reports submitted by citizens regarding issues in the community.</p>
+            <button onclick="window.location.href='viewreport.html'">View Reports</button>
+        </div>
+
+        <div class="dashboard-component">
+            <h3>User Interaction Management</h3>
+            <p>Oversee interactions between citizens and politicians to maintain a respectful environment.</p>
+            <button onclick="manageInteractions()">Manage Interactions</button>
+        </div>
+
+        <div class="dashboard-component">
+            <h3>Statistics Overview</h3>
+            <p>View statistics related to user engagement, issue reporting, and more.</p>
+            <button onclick="viewStatistics()">View Statistics</button>
+        </div>
+
+        <div class="dashboard-component">
+            <h3>Pending Actions</h3>
+            <p>Review and act on any pending moderation tasks or user complaints.</p>
+            <button onclick="viewPendingActions()">View Pending Actions</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Citizen-Politician Interaction Platform. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizen Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Citizen Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="politician.html">Politician</a></li>
+                <li><a href="moderator.html">Moderator</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Welcome to Your Dashboard</h2>
+        <p>As a citizen, you can report issues, provide feedback, and stay updated with your representatives.</p>
+
+        <div class="dashboard-component">
+            <h3>Report an Issue</h3>
+            <p>Submit your concerns or issues to your elected representatives.</p>
+            <textarea id="issueDescription" rows="4" placeholder="Describe your issue here..." required></textarea>
+            <button onclick="saveReport()">Submit Report</button>
+        </div>
+        
+        <div class="dashboard-component">
+            <h3>View Submitted Reports</h3>
+            <p>Check the status of your previously submitted reports and feedback.</p>
+            <button onclick="window.location.href='viewreport.html'">View Reports</button>
+        </div>
+
+        <div class="dashboard-component">
+            <h3>Civic Engagement Resources</h3>
+            <p>Access resources for civic engagement and learn how to get involved in your community.</p>
+            <button onclick="window.location.href='viewResources.html'">View Resources</button>
+        </div>
+
+        <div class="dashboard-component">
+            <h3>Provide Feedback</h3>
+            <p>Share your feedback regarding the platform or any other concerns.</p>
+            <textarea id="feedbackDescription" rows="8" placeholder="Enter your feedback here..." required></textarea>
+            <button onclick="submitFeedback()">Submit Feedback</button>
+        </div>
+        
+    </section>
+
+    <footer>
+        <p>© 2024 Citizen-Politician Interaction Platform. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function saveReport() {
+            const issueDescription = document.getElementById('issueDescription').value;
+
+            if (issueDescription.trim() === "") {
+                alert("Please enter a valid description.");
+                return;
+            }
+
+            // Retrieve existing reports from local storage
+            let reports = JSON.parse(localStorage.getItem('reports')) || [];
+
+            // Create a new report object
+            const newReport = {
+                id: Date.now(), // Unique ID for the report
+                description: issueDescription
+            };
+
+            // Add the new report to the array
+            reports.push(newReport);
+
+            // Save the updated array back to local storage
+            localStorage.setItem('reports', JSON.stringify(reports));
+
+            // Clear the textarea and confirm submission
+            document.getElementById('issueDescription').value = '';
+            alert("Your report has been submitted!");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politician Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Politician Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="citizen.html">Citizen</a></li>
+                <li><a href="moderator.html">Moderator</a></li>
+                <li><a href="admin.html">Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section>
+        <h2>Submitted Reports</h2>
+        <p>Below are the issues reported by citizens:</p>
+
+        <div id="reportList">
+            <!-- Reports will be dynamically loaded here -->
+        </div>
+    </section>
+    
+    <section>
+        <h2>Post Updates</h2>
+        <form id="updateForm" onsubmit="saveUpdate(event)">
+            <label for="updateContent">Write an Update:</label>
+            <textarea id="updateContent" name="updateContent" placeholder="Share your latest news or announcements..." required></textarea>
+            <button type="submit">Post Update</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Feedback Responses</h2>
+        <form id="feedbackResponseForm">
+            <label for="feedbackResponse">Respond to Feedback:</label>
+            <textarea id="feedbackResponse" name="feedbackResponse" placeholder="Type your response here..." required></textarea>
+            <button type="submit">Submit Response</button>
+        </form>
+    </section>
+
+    <section>
+        <h2>Upcoming Events</h2>
+        <ul>
+            <li>Town Hall Meeting - Date: 12/15/2024</li>
+            <li>Community Clean-Up - Date: 1/20/2025</li>
+            <!-- Add more events here -->
+        </ul>
+    </section>
+
+    <section>
+        <h2>Statistics Overview</h2>
+        <div class="statistics">
+            <p>Total Reports Received: <strong>25</strong></p>
+            <p>Total Feedback Responses: <strong>15</strong></p>
+            <p>Total Upcoming Events: <strong>3</strong></p>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2024 Citizen-Politician Interaction Platform. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Load submitted reports from localStorage
+        function loadReports() {
+            const reports = JSON.parse(localStorage.getItem('reports')) || [];
+            const reportList = document.getElementById('reportList');
+
+            reportList.innerHTML = '';
+            if (reports.length === 0) {
+                reportList.innerHTML = '<p>No reports have been submitted yet.</p>';
+                return;
+            }
+
+            reports.forEach(report => {
+                const reportItem = document.createElement('div');
+                reportItem.classList.add('report-item');
+
+                reportItem.innerHTML = `
+                    <p><strong>Report ID:</strong> ${report.id}</p>
+                    <p><strong>Description:</strong> ${report.description}</p>
+                `;
+
+                reportList.appendChild(reportItem);
+            });
+        }
+
+        // Save updates to localStorage
+        function saveUpdate(event) {
+            event.preventDefault(); // Prevent form submission reload
+            const updateContent = document.getElementById('updateContent').value.trim();
+
+            if (!updateContent) {
+                alert("Please enter a valid update.");
+                return;
+            }
+
+            const updates = JSON.parse(localStorage.getItem('updates')) || [];
+
+            // Create a new update object
+            const newUpdate = {
+                id: Date.now(),
+                description: updateContent,
+                timestamp: new Date().toLocaleString()
+            };
+
+            updates.push(newUpdate);
+            localStorage.setItem('updates', JSON.stringify(updates));
+
+            alert("Your update has been saved!");
+            document.getElementById('updateContent').value = ''; // Clear the textarea
+        }
+
+        // Load reports on page load
+        window.onload = loadReports;
+    </script>
+</body>
+</html>
